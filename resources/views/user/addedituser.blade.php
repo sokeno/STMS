@@ -61,12 +61,10 @@
             <input type="password" name="password" value="" class="form-control">
         </div>
 
-        {{--  <div class="form-group">
-          <label>Address</label>
-          <textarea value="Smith" rows="3" class="form-control">2817 S 49th
-Apt 314
-San Jose, CA 95101</textarea>
-        </div>  --}}
+        <div class="form-group">
+          <label>Preffered working hours per day </label>
+          <input type="text" name="hours" value="{{ isset($user->hours) ? $user->hours : null }} class="form-control">
+        </div>  
 
         
 
@@ -108,44 +106,8 @@ San Jose, CA 95101</textarea>
   </div>
 </div>
 
-<div class="modal small fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Delete Confirmation</h3>
-      </div>
-      <div class="modal-body">
-        
-        <p class="error-text"><i class="fa fa-warning modal-icon"></i>Are you sure you want to delete the user?</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-danger" data-dismiss="modal">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
-            <footer>
-                <hr>
-
-                <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
-                <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-                <p>© 2014 <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-            </footer>
         </div>
     </div>
-
-
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript">
-        $("[rel=tooltip]").tooltip();
-        $(function() {
-            $('.demo-cancel-click').click(function(){return false;});
-        });
-    </script>
-    
-  
-</body></html>
+    @endsection
