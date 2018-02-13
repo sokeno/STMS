@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/policy', 'HomeController@dashboard')->name('policy');
+Route::get('/terms', 'HomeController@dashboard')->name('terms');
