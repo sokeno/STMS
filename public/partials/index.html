@@ -1,0 +1,94 @@
+
+
+<hr>
+
+<div class="pull-left">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTaskModal">+ Add Task</button>
+</div>
+<div class="pull-right">
+    <button type="button" class="btn btn-info" ng-click="logout()">Logout!</button>
+</div>
+<div class="clearfix"></div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>You currently have
+            <b>{{ tasks.length }}</b> tasks in your wishlist.</p>
+        <ul>
+            <li ng-repeat="task in tasks">
+                <b>{{ task.name }}</b> started
+                <i>{{ task.start_time }}</i>ended
+                <i>{{ task.end_time }}</i>
+                <button ng-click="load(task.id)" class="btn btn-info btn-xs">Update</button>
+                <button ng-click="delete(task.id)" class="btn btn-danger btn-xs">Delete</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="modal fade" id="addTaskModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add a Task</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <input class="form-control" ng-model="currentTaskName" placeholder="Name..." type="text">
+                </p>
+                <p>
+                    <input class="form-control" ng-model="currentTaskStartTime" placeholder="Start Time..." type="text">
+                </p>
+                <p>
+                    <input class="form-control" ng-model="currentTaskEndTime" placeholder="End Time..." type="text">
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="create()">Save Task</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="updateTaskModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Update a Task</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" ng-model="currentTaskId" />
+                <p>
+                    <input class="form-control" ng-model="currentTaskName" placeholder="Name..." type="text">
+                </p>
+                <p>
+                    <input class="form-control" ng-model="currentStartTime" placeholder="Start Time..." type="text">
+                </p>
+                <p>
+                    <input class="form-control" ng-model="currentEndTime" placeholder="End Time..." type="text">
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="update()">Save Changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
