@@ -1,8 +1,9 @@
-var taskManagerServices = angular.module('taskManagerServices', [
-    'LocalStorageModule'
+var taskManagerAppServices = angular.module('taskManagerAppServices', [
+    'LocalStorageModule',
+    'restangular'
 ]);
 
-taskManagerServices.factory('userService', ['$http', 'localStorageService', function ($http, localStorageService) {
+taskManagerAppServices.factory('userService', ['$http', 'localStorageService', function ($http, localStorageService) {
 
     function checkIfLoggedIn() {
 
@@ -132,7 +133,7 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
     }
 
     function remove(taskId, onSuccess, onError) {
-        Restangular.one('api/books/', taskId).remove().then(function () {
+        Restangular.one('api/tasks/', taskId).remove().then(function () {
 
             onSuccess();
 

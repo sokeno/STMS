@@ -1,5 +1,3 @@
-
-
 <hr>
 
 <div class="pull-left">
@@ -18,11 +16,11 @@
             <b>{{ tasks.length }}</b> tasks in your wishlist.</p>
         <ul>
             <li ng-repeat="task in tasks">
-                <b>{{ task.name }}</b> started
-                <i>{{ task.start_time }}</i>ended
-                <i>{{ task.end_time }}</i>
+                <b>{{ task.name }}</b> start time
+                <i>{{ task.start_time }}</i>end time
+                <i>{{ task.end_time }}</i>|
                 <button ng-click="load(task.id)" class="btn btn-info btn-xs">Update</button>
-                <button ng-click="delete(task.id)" class="btn btn-danger btn-xs">Delete</button>
+                <button ng-click="remove(task.id)" class="btn btn-danger btn-xs">Remove</button>
             </li>
         </ul>
     </div>
@@ -39,7 +37,7 @@
             </div>
             <div class="modal-body">
                 <p>
-                    <input class="form-control" ng-model="currentTaskName" placeholder="Name..." type="text">
+                    <input class="form-control" ng-model="currentTaskName" placeholder="Title..." type="text">
                 </p>
                 <p>
                     <input class="form-control" ng-model="currentTaskStartTime" placeholder="Start Time..." type="text">
@@ -71,13 +69,13 @@
             <div class="modal-body">
                 <input type="hidden" ng-model="currentTaskId" />
                 <p>
-                    <input class="form-control" ng-model="currentTaskName" placeholder="Name..." type="text">
+                    <input class="form-control" ng-model="currentTaskName" placeholder="Title..." type="text">
                 </p>
                 <p>
-                    <input class="form-control" ng-model="currentStartTime" placeholder="Start Time..." type="text">
+                    <input class="form-control" ng-model="currentTaskStartTime" placeholder="Start Time..." type="text">
                 </p>
                 <p>
-                    <input class="form-control" ng-model="currentEndTime" placeholder="End Time..." type="text">
+                    <input class="form-control" ng-model="currentTaskEndTime" placeholder="End Time..." type="text">
                 </p>
             </div>
             <div class="modal-footer">
@@ -89,6 +87,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-
-
+<!-- /.modal -->>

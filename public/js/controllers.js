@@ -1,6 +1,8 @@
-var taskManagerAppControllers = angular.module('taskManagerAppControllers', []);
+var taskManagerAppControllers = angular.module('taskManagerAppControllers', [
+    'taskManagerAppServices'
+]);
 
-taskManagerAppControllers.controller('LoginController', ['$scope', '$http', '$location', 'userService', function ($scope, $http, $location, userService) {
+taskManagerAppControllers.controller('LoginController', ['$scope', '$location', 'userService', function ($scope, $location, userService) {
 
     $scope.login = function () {
         userService.login(
@@ -22,7 +24,7 @@ taskManagerAppControllers.controller('LoginController', ['$scope', '$http', '$lo
 
 }]);
 
-taskManagerAppControllers.controller('SignupController', ['$scope', '$http', function ($scope, $http) {
+taskManagerAppControllers.controller('SignupController', ['$scope', '$location', 'userService', function ($scope, $location, userService) {
 
     $scope.signup = function () {
         userService.signup(
@@ -48,47 +50,6 @@ taskManagerAppControllers.controller('SignupController', ['$scope', '$http', fun
 
 taskManagerAppControllers.controller('MainController', ['$scope', '$location', 'userService', 'taskService', function ($scope, $location, userService, taskService) {
 
-    $scope.load = function (taskId) {
-
-        taskService.getById(taskId, function (response) {
-
-            $scope.currentTaskId = response.task.id;
-            $scope.currentStartTime = response.task.start_time;
-            $scope.currentEndTime = response.task.end_time;
-            //$scope.currentBookPagesCount = response.book.pages_count;
-
-            $('#updateTaskModal').modal('toggle');
-
-        }, function () {
-
-            alert('Some errors occurred while communicating with the service. Try again later.');
-
-        });
-
-    }
-
-    $scope.update = function () {
-
-        taskService.update(
-            $scope.currentTaskId,
-            {
-                name: $scope.currentTaskName,
-                start_time: $scope.currentStartTime,
-                end_time: $scope.currentEndTime
-            },
-            function (response) {
-
-                $('#updateTaskModal').modal('toggle');
-                $scope.currentTaskReset();
-                $scope.refresh();
-
-            }, function (response) {
-                alert('Some errors occurred while communicating with the service. Try again later.');
-            }
-        );
-    }
-
-
     $scope.logout = function () {
         userService.logout();
         $location.path('/login');
@@ -98,8 +59,8 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
         taskService.create({
             name: $scope.currentTaskName,
-            start_time: $scope.currentStartTime,
-            end_time: $scope.currentEndTime
+            start_time: $scope.currentTaskStartTime,
+            end_time: $scope.currentTaskEndTime
         }, function () {
 
             $('#addTaskModal').modal('toggle');
@@ -128,6 +89,47 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
     }
 
+    $scope.load = function (taskId) {
+
+        taskService.getById(taskId, function (response) {
+
+            $scope.currentTaskId = response.task.id;
+            $scope.currentTaskName = response.task.name;
+            $scope.currentTaskStartTime = response.task.start_time;
+            $scope.currentTaskEndTime = response.task.end_time;
+
+            $('#updateTaskModal').modal('toggle');
+
+        }, function () {
+
+            alert('Some errors occurred while communicating with the service. Try again later.');
+
+        });
+
+    }
+
+    $scope.update = function () {
+
+        taskService.update(
+            $scope.currentTaskId,
+            {
+                name: $scope.currentTaskName,
+                start_time: $scope.currentTaskStartTime,
+                end_time: $scope.currentTaskEndTime
+            },
+            function (response) {
+
+                $('#updateTaskModal').modal('toggle');
+                $scope.currentTaskReset();
+                $scope.refresh();
+
+            }, function (response) {
+                alert('Some errors occurred while communicating with the service. Try again later.');
+            }
+        );
+
+    }
+
     $scope.remove = function (taskId) {
 
         if (confirm('Are you sure to remove this task from your wishlist?')) {
@@ -144,11 +146,11 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
     }
 
-
     $scope.currentTaskReset = function () {
         $scope.currentTaskName = '';
-        $scope.currentStartTime = '';
-        $scope.currentEndTime = '';
+        $scope.currentTaskStartTime = '';
+        $scope.currentTaskEndTime = '';
+        $scope.currentTaskId = '';
     }
 
     if (!userService.checkIfLoggedIn())
@@ -156,6 +158,7 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
     $scope.tasks = [];
 
+    $scope.currentTaskReset();
     $scope.refresh();
 
 }]);

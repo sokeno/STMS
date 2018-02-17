@@ -3,6 +3,12 @@ var taskManagerApp = angular.module('taskManagerApp', [
     'taskManagerAppControllers'
 ]);
 
+taskManagerApp.config(function (localStorageServiceProvider) {
+    localStorageServiceProvider
+        .setPrefix('taskManagerApp')
+        .setStorageType('localStorage');
+});
+
 taskManagerApp.config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider.
