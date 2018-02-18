@@ -93,10 +93,11 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
         taskService.getById(taskId, function (response) {
 
-            $scope.currentTaskId = response.task.id;
-            $scope.currentTaskName = response.task.name;
-            $scope.currentTaskStartTime = response.task.start_time;
-            $scope.currentTaskEndTime = response.task.end_time;
+            $scope.currentTaskId = this.id;
+            $scope.currentTaskName = this.name;
+            $scope.currentTaskStartTime = this.start_time;
+            $scope.currentTaskEndTime = this.end_time;
+            //response.task.end_time;
 
             $('#updateTaskModal').modal('toggle');
 

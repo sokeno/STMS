@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 //use Tymon\JWTAuth\JWTAuth;
-//use Tymon\JWTAuth\Facades\JWTAuth;
-use JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+//use JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Api\V1\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;

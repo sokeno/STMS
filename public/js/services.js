@@ -78,7 +78,7 @@ taskManagerAppServices.factory('userService', ['$http', 'localStorageService', f
 taskManagerAppServices.factory('taskService', ['Restangular', 'userService', function (Restangular, userService) {
 
     function getAll(onSuccess, onError) {
-        Restangular.all('api/tasks').getList().then(function (response) {
+        Restangular.all('api/task').getList().then(function (response) {
 
             onSuccess(response);
 
@@ -91,7 +91,7 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
 
     function getById(taskId, onSuccess, onError) {
 
-        Restangular.one('api/tasks', taskId).get().then(function (response) {
+        Restangular.one('api/task', taskId).get().then(function (response) {
 
             onSuccess(response);
 
@@ -105,7 +105,7 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
 
     function create(data, onSuccess, onError) {
 
-        Restangular.all('api/tasks').post(data).then(function (response) {
+        Restangular.all('api/task').post(data).then(function (response) {
 
             onSuccess(response);
 
@@ -119,7 +119,8 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
 
     function update(taskId, data, onSuccess, onError) {
 
-        Restangular.one("api/tasks").customPUT(data, taskId).then(function (response) {
+        Restangular.one("api/task").customPUT(data, taskId).then(function (response) {
+       // Restangular.one(data, taskId).customPUT(data, 'api/task').then(function (response) {
 
             onSuccess(response);
 
@@ -133,7 +134,7 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
     }
 
     function remove(taskId, onSuccess, onError) {
-        Restangular.one('api/tasks/', taskId).remove().then(function () {
+        Restangular.one('api/task/', taskId).remove().then(function () {
 
             onSuccess();
 
