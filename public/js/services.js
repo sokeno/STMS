@@ -120,7 +120,6 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
     function update(taskId, data, onSuccess, onError) {
 
         Restangular.one("api/task").customPUT(data, taskId).then(function (response) {
-       // Restangular.one(data, taskId).customPUT(data, 'api/task').then(function (response) {
 
             onSuccess(response);
 

@@ -18,7 +18,7 @@
             <li ng-repeat="task in tasks">
                 <b>{{ task.name }}</b> start time
                 <i>{{ task.start_time }}</i>end time
-                <i>{{ task.end_time }}</i>|
+                <i>{{ task.end_time }}</i>
                 <button ng-click="load(task.id)" class="btn btn-info btn-xs">Update</button>
                 <button ng-click="remove(task.id)" class="btn btn-danger btn-xs">Remove</button>
             </li>
@@ -87,4 +87,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->>
+<!-- /.modal -->

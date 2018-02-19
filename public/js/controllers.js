@@ -8,7 +8,9 @@ taskManagerAppControllers.controller('LoginController', ['$scope', '$location', 
         userService.login(
             $scope.email, $scope.password,
             function (response) {
+                
                 $location.path('/');
+                
             },
             function (response) {
                 alert('Something went wrong with the login process. Try again later!');
@@ -93,10 +95,10 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
         taskService.getById(taskId, function (response) {
 
-            $scope.currentTaskId = this.id;
-            $scope.currentTaskName = this.name;
-            $scope.currentTaskStartTime = this.start_time;
-            $scope.currentTaskEndTime = this.end_time;
+            $scope.currentTaskId = response.id;
+            $scope.currentTaskName = response.name;
+            $scope.currentTaskStartTime = response.start_time;
+            $scope.currentTaskEndTime = response.end_time;
             //response.task.end_time;
 
             $('#updateTaskModal').modal('toggle');
@@ -137,6 +139,7 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
             taskService.remove(taskId, function () {
 
                 alert('Task removed successfully.');
+                $scope.refresh();
 
             }, function () {
 

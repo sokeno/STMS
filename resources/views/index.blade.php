@@ -10,7 +10,7 @@
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/lodash/dist/lodash.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
         <script src="bower_components/restangular/dist/restangular.min.js"></script>
