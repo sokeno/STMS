@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Time Manager Application</h1>
+                    <h1>Simple Time Management Application</h1>
                 </div>
             </div>
 
