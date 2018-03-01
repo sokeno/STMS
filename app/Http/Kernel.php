@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
 
         'jwt.auth' => GetUserFromToken::class,
         'jwt.refresh' => RefreshToken::class,
+        'ability' => 'App\Http\Middleware\TokenEntrustAbility',
     ];
 }

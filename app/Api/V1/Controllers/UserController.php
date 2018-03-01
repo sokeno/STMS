@@ -9,6 +9,7 @@ use App\Api\V1\Requests\LoginRequest;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Auth;
+use App\User;
 
 class UserController extends Controller
 {
@@ -30,5 +31,10 @@ class UserController extends Controller
     public function me()
     {
         return response()->json(Auth::guard()->user());
+    }
+    //returns all users
+    public function index()
+    {
+        return response()->json(['auth'=>Auth::user(), 'users'=>User::all()]);
     }
 }

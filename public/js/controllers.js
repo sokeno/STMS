@@ -10,6 +10,7 @@ taskManagerAppControllers.controller('LoginController', ['$scope', '$location', 
             function (response) {
                 
                 $location.path('/');
+                $scope.refresh();
                 
             },
             function (response) {
@@ -77,6 +78,25 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
 
     }
 
+    $scope.createNote = function () {
+
+        taskService.create_note({
+            task_id: $scope.currentTaskId,
+            description: $scope.currentNote
+        }, function () {
+
+            $('#addNote').modal('toggle');
+            $scope.currentTaskReset();
+            $scope.refresh();
+
+        }, function () {
+
+            alert('Some errors occurred while communicating with the service. Try again later.');
+
+        });
+
+    }
+
     $scope.refresh = function () {
 
         taskService.getAll(function (response) {
@@ -132,6 +152,29 @@ taskManagerAppControllers.controller('MainController', ['$scope', '$location', '
         });
 
     }
+
+    //task details controller
+
+    $scope.addNote = function (taskId) {
+
+        taskService.getById(taskId, function (response) {
+
+            $scope.currentTaskId = response.id;
+            $scope.currentTaskName = response.name;
+            $scope.currentTaskStartTime = response.start_time;
+            $scope.currentTaskEndTime = response.end_time;
+            //response.task.end_time;
+
+            $('#addNote').modal('toggle');
+
+        }, function () {
+
+            alert('Some errors occurred while communicating with the service. Try again later.');
+
+        });
+
+    }
+
 
 
     $scope.update = function () {

@@ -117,6 +117,20 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
 
     }
 
+    function create_note(data, onSuccess, onError) {
+
+        Restangular.all('api/note').post(data).then(function (response) {
+
+            onSuccess(response);
+
+        }, function (response) {
+
+            onError(response);
+
+        });
+
+    }
+
     function update(taskId, data, onSuccess, onError) {
 
         Restangular.one("api/task").customPUT(data, taskId).then(function (response) {
@@ -150,6 +164,7 @@ taskManagerAppServices.factory('taskService', ['Restangular', 'userService', fun
         getAll: getAll,
         getById: getById,
         create: create,
+        create_note: create_note,
         update: update,
         remove: remove
     }

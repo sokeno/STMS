@@ -26,7 +26,7 @@ class NoteController extends Controller
     $currentUser = JWTAuth::parseToken()->authenticate();
     return $currentUser
         ->notes()
-        ->orderBy('title', 'DESC')
+        ->orderBy('id', 'DESC')
         ->get()
         ->toArray();
 }
@@ -36,11 +36,11 @@ public function store(Request $request)
 
     $note = new Note;
 
-    $note->title = $request->get('title');
+    $note->task_id = $request->get('task_id');
     $note->description = $request->get('description');
    
 
-    if($currentUser->notes()->save($note))
+    if($note->save())
         return $this->response->created();
     else
         return $this->response->error('could_not_create_note', 500);
