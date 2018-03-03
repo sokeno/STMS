@@ -15,6 +15,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Auth;
 use App\Task;
+use App\Note;
 use Dingo\Api\Routing\Helpers;
 
 class TaskController extends Controller
@@ -85,6 +86,7 @@ public function destroy($id)
         throw new NotFoundHttpException;
 
     if($task->delete())
+
         return $this->response->noContent();
     else
         return $this->response->error('could_not_delete_task', 500);
